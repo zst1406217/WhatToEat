@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <style>
+    #wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -60px;
+      margin-left: -250px;
+      width: 500px;
+      height: 120px;
+      text-align: center;
+    }
+
+    #start {
+      width: 120px;
+      height: 40px;
+      /* +margin-left: 260px;
+  vertical-align: middle;
+  font-family: "微软雅黑";
+  cursor: pointer; */
+    }
+
+    #stop {
+      display: none;
+      width: 120px;
+      height: 40px;
+      vertical-align: middle;
+      font-family: 微软雅黑;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+
+<body bgcolor="yellow">
+
+  <h1 align="center" style="color:red;font-size: 80px" id='tt'>今天吃什么</h1>
+
+  <div id="wrapper">
+    <h1 style="font-size: 50px">
+      今天吃什么，吃这个！
+      <br>
+      <br>
+      <b style="color:#FF9733;font-size: 60px" id="what">休闲餐厅</b>
+    </h1>
+  </div>
+  <div align="center">
+    <button id="start" onclick="stop();" style="font-size: 60px;width:500px;height:150px">停止</button>
+  </div>
+
+
+  <script>
+    var canteen = ['休闲餐厅', '东区二楼东侧', '风味餐厅', '东区二楼西侧'],
+      // var canteen = ['休闲餐厅', '东区二楼东侧', '风味餐厅', '东区二楼西侧', '临湖餐厅', '西区人文社科组团一楼', '西区人文社科组团二楼', '西区人文社科组团三楼', '麦香餐厅'],
+      tmp;
+    var i = 0;
+    var k = 0;
+    var l = canteen.length;
+    var int = self.setInterval("random()", 50);
+
+    function random() {
+      change();
+      tmp = canteen[i];
+      document.getElementById("what").innerHTML = tmp;
+    }
+
+    function change() {
+      if (i < l - 1) {
+        i = i + 1;
+      }
+      else {
+        i = 0;
+      }
+    }
+
+    function stop() {
+      if (k <= 5) {
+        if (document.getElementById("start").innerHTML == "停止") {
+          document.getElementById("start").innerHTML = "不行，换一个";
+          int = window.clearInterval(int);
+        }
+        else {
+          document.getElementById("start").innerHTML = "停止";
+          int = self.setInterval("random()", 50);
+        }
+        k = k + 1;
+      }
+      else {
+        document.getElementById("start").innerHTML = "这么作，别换了";
+        int = window.clearInterval(int);
+        document.getElementById("what").innerHTML = '这么作，别吃了';
+        document.getElementById("tt").innerHTML = '还吃什么，别吃了';
+      }
+    }
+  </script>
+
+</body>
+
+</html>
+<!-- 花浸月 -->
